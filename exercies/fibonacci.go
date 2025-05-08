@@ -32,7 +32,7 @@ func fibonacci() func() int {
 // llm suggest stuff
 func fibonacci_better() func() int {
   a, b := 0, 1
-  return func value() int {
+  return func() int {
     result := a
     a, b = b, a + b
     return result

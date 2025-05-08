@@ -487,7 +487,7 @@ func main() {
 
 	// type assertions
 	var i interface{} = map[string]int{"x": 3, "y": 4}
-	s, ok := i.(map[string]int) // asserts if interface i contains a value of type string
+	s, ok := i.(map[string]int) // asserts if interface i contains a value of type map of string key and int value 
 	fmt.Println("containes type of map[string]int?", ok, s)
 
 	f, ok := i.(float64) // returns false : panic if ok is not passed here
