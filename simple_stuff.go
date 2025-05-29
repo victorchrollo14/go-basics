@@ -53,6 +53,7 @@ func data_types_primitive() {
 	var rbyte byte = 'A'
 
 	// this is to represent unicode characters
+  // enclosed with single quotes all the time, double quotes is string
 	var rPound rune = '£'
 	fmt.Println(a, b, c, isOk, complexNum, complexNum2, rbyte, rPound)
 	fmt.Printf("Unicode CodePoint: %U\n", rPound)

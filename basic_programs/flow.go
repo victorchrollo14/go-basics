@@ -3,6 +3,8 @@ package main
 
 import (
 	"fmt"
+	"os"
+	"unicode"
 )
 
 // Problem 1: FizzBuzz with For Loop
@@ -41,20 +43,81 @@ func num_classifier(val int) string {
 		return "large positive"
 	}
 
-  return "negative num not allowed"
+	return "negative num not allowed"
 }
-//  Problem 3: Advanced Switch Case
-// Create a function that takes a single rune (character) and uses a switch statement 
+
+//	Problem 3: Advanced Switch Case
+//
+// Create a function that takes a single rune (character) and uses a switch statement
 // to determine what category it falls into: uppercase letter, lowercase letter, digit, or other symbol.
+func check_char(char rune) string {
+
+	switch {
+	case unicode.IsDigit(char):
+		return "Digit"
+	case unicode.IsUpper(char):
+		return "uppercase-letter"
+	case unicode.IsLower(char):
+		return "lowercase-letter"
+	default:
+		return "other-symbol"
+	}
+
+}
+
+// Problem 4: Defer Function Execution
+// Write a program that opens a file, writes some text to it,
+// and ensures the file is properly closed using defer. Make sure your program handles potential errors.
+func WriteToFile(line string) (bool, error) {
+
+	// checking if file exists
+	_, err := os.Stat("block.txt")
+	if os.IsNotExist(err) {
+		fmt.Println("file doesn't exist, creating one...")
+		newFile, err := os.Create("block.txt")
+
+		if err != nil {
+			return false, err
+		}
+    newFile.Close()
+	}
+
+	file, err := os.OpenFile("block.txt", os.O_RDWR|os.O_APPEND, 0644)
+	if err != nil {
+		return false, err
+	}
+
+  defer func(){
+    fmt.Println("closing the file...")
+    file.Close()
+  }()
+
+	val, err := file.WriteString(line + "\n")
+	if err != nil {
+		return false, err
+	}
+  fmt.Printf("wrote %v lines to block.txt\n", val)
 
 
+	return true, err
+
+}
 
 func main() {
 	// fizzbuzz()
 
-	a := num_classifier(3)
-	b := num_classifier(0)
-	c := num_classifier(18)
-	fmt.Println(a, b, c)
+	// a := num_classifier(3)
+	// b := num_classifier(0)
+	// c := num_classifier(18)
+	// fmt.Println(a, b, c)
+
+	// digit := check_char('3')
+	// upper := check_char('A')
+	// lower := check_char('a')
+	// special := check_char('$')
+	// fmt.Println(digit, upper, lower, special)
+  success,_ := WriteToFile("pinterest.com")
+  fmt.Println(success)
+	WriteToFile("youtube.com")
 
 }
