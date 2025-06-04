@@ -79,7 +79,7 @@ func WriteToFile(line string) (bool, error) {
 		if err != nil {
 			return false, err
 		}
-    newFile.Close()
+		newFile.Close()
 	}
 
 	file, err := os.OpenFile("block.txt", os.O_RDWR|os.O_APPEND, 0644)
@@ -87,20 +87,37 @@ func WriteToFile(line string) (bool, error) {
 		return false, err
 	}
 
-  defer func(){
-    fmt.Println("closing the file...")
-    file.Close()
-  }()
+	defer func() {
+		fmt.Println("closing the file...")
+		file.Close()
+	}()
 
 	val, err := file.WriteString(line + "\n")
 	if err != nil {
 		return false, err
 	}
-  fmt.Printf("wrote %v lines to block.txt\n", val)
-
+	fmt.Printf("wrote %v lines to block.txt\n", val)
 
 	return true, err
 
+}
+
+// Problem 5: Nested Loops with Break and Continue
+// Create a program that uses nested loops to print a pattern of asterisks forming a right triangle.
+// Implement logic to skip certain positions using continue and to exit inner loops early using break based on some condition.
+// *
+// **
+// ***
+// ****
+// *****
+
+func star(triLen int) {
+	for i := 1; i <= triLen; i++ {
+		for j := 1; j <= i; j++ {
+			fmt.Print("*")
+		}
+		fmt.Println()
+	}
 }
 
 func main() {
@@ -116,8 +133,10 @@ func main() {
 	// lower := check_char('a')
 	// special := check_char('$')
 	// fmt.Println(digit, upper, lower, special)
-  success,_ := WriteToFile("pinterest.com")
-  fmt.Println(success)
-	WriteToFile("youtube.com")
+	//  success,_ := WriteToFile("pinterest.com")
+	//  fmt.Println(success)
+	// WriteToFile("youtube.com")
+
+	star(10)
 
 }
