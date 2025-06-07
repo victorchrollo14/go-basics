@@ -122,40 +122,19 @@ func Matrix(row int, col int) {
 	}
 }
 
-// Problem 5: Nested Structs and Maps
-// Design a program that models a library with books and authors using structs.
-// Create a map where keys are author names and values are slices of book structs.
-// Implement functions to add books and search for books by author or title.
-type Author struct {
- name string
- age int
- books_published int
- books_list []string
-}
-
-type Book struct {
- id string
- author string
- title string
- genre string
-}
-
-
-
-
 func main() {
-	// victor := Person{"victor", 22, "bangalore"}
-	// fmt.Println("init values = ", victor)
-	// msg := victor.Birthday()
-	// fmt.Println(msg)
-	//
-	// s1 := []int{23, 12, -10, 0, 5, 7, 7, 8, 8, 3}
-	// s2 := []int{22, 12, -90, 0, 5, 7, 8, 8, 8, 4}
-	//  fmt.Println("s1 = ", s1)
-	//  fmt.Println("s2 = ", s1)
-	// intersection := MergeSlice(s1, s2)
-	// fmt.Println("intersection =", intersection)
-	//  testMergeSlice()
+	victor := Person{"victor", 22, "bangalore"}
+	fmt.Println("init values = ", victor)
+	msg := victor.Birthday()
+	fmt.Println(msg)
+
+	s1 := []int{23, 12, -10, 0, 5, 7, 7, 8, 8, 3}
+	s2 := []int{22, 12, -90, 0, 5, 7, 8, 8, 8, 4}
+	fmt.Println("s1 = ", s1)
+	fmt.Println("s2 = ", s1)
+	intersection := MergeSlice(s1, s2)
+	fmt.Println("intersection =", intersection)
+	testMergeSlice()
 	FrequencyCounter("hello hello, what are you doing")
 
 	Matrix(3, 3)
