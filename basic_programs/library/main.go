@@ -33,6 +33,24 @@ func SearchIndex(bookList []Book, id string) int {
 	return -1
 }
 
+func FindMatches(bookList []Book, title string) []Book{
+  var matches []Book = []Book{}
+  for _, val := range bookList {
+    mainString := strings.ToLower(val.title);
+    search := strings.ToLower(title)
+   
+
+    if strings.Contains(mainString, search){
+      fmt.Println("found matches..")
+      fmt.Println(mainString, search)
+      matches = append(matches, val) 
+    } 
+  }
+
+  return matches;
+} 
+
+
 func LogBooks(bookList []Book) {
 	for _, val := range bookList {
 		fmt.Printf("{id: '%v', author: '%v', title: '%v', genre: '%v' }\n", val.id, val.author, val.title, val.genre)
@@ -99,7 +117,7 @@ func main() {
 			genre, _ := reader.ReadString('\n')
 			genre = strings.TrimSpace(genre)
 
-			initialBooks = append(initialBooks, Book{id, author, title, genre})	
+			initialBooks = append(initialBooks, Book{id, author, title, genre})
       LogBooks(initialBooks)
 
 		case 3:
@@ -121,11 +139,22 @@ func main() {
 			fmt.Println("the library after deleting a book")
       LogBooks(initialBooks)
 
+    case 4: 
+      fmt.Println("Search a book...")
+      fmt.Print("Enter the book title: ")
+      title, _ := reader.ReadString('\n')
+      title = strings.TrimSpace(title)
+      matchBooks := FindMatches(initialBooks, title);
+      fmt.Println("Search Results...")
+      if(len(matchBooks) == 0){
+        fmt.Println("The book you search for doesn't exist\n\n") 
+      }else {
+        LogBooks(matchBooks)
+      }
+
 		default:
 			fmt.Printf("Option %v doesn't exist\n", optNum)
 
 		}
-
 	}
-
 }
