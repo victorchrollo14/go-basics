@@ -1,15 +1,15 @@
 package main
 
-import "golang.org/x/tour/tree"
 import (
 	"fmt"
+
+	"golang.org/x/tour/tree"
 )
 
 // Walk walks the tree t sending all values
 // from the tree to the channel ch.
 func Walk(t *tree.Tree, ch chan int) {
-
-	var current = t
+	current := t
 	stack := make([]*tree.Tree, 0)
 
 	for len(stack) != 0 || current != nil {
@@ -28,13 +28,11 @@ func Walk(t *tree.Tree, ch chan int) {
 	}
 
 	close(ch)
-
 }
 
 // Same determines whether the trees
 // t1 and t2 contain the same values.
 func Same(t1, t2 *tree.Tree) bool {
-
 	channel1 := make(chan int)
 	channel2 := make(chan int)
 
@@ -56,12 +54,9 @@ func Same(t1, t2 *tree.Tree) bool {
 		}
 
 	}
-
 }
 
 func main() {
-
 	sameTree := Same(tree.New(1), tree.New(1))
 	fmt.Println("Same tree", sameTree)
-
 }
